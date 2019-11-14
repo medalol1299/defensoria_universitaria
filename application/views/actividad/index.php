@@ -23,12 +23,12 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">New Event</h5>
+                    <h5 class="modal-title">Nueva Actividad</h5>
                 </div>
                 <div class="modal-body">
                     <form class="new-event__form">
                         <div class="form-group">
-                            <input type="text" name="actividad" class="form-control new-event__title" placeholder="Event Title">
+                            <input type="text" name="actividad" class="form-control new-event__title" placeholder="Actividad">
                             <i class="form-group__bar"></i>
                         </div>
                         <div class="form-group">
@@ -63,6 +63,9 @@
     <div class="modal fade" id="edit-event" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Actividad</h5>
+                </div>
                 <div class="modal-body">
                     <form class="edit-event__form">
                         <div class="form-group">

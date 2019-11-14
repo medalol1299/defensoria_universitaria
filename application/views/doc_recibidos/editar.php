@@ -5,7 +5,7 @@
 
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Nuevo Documento Emitido</h4>
+        <h4 class="card-title">Editar Documento Recibido</h4>
         <div class="row">
             <?php
             $idtipo_documento = '';
@@ -16,9 +16,10 @@
                     $idtipo_documento = $fila->idtipo_documento;
                     $codigo = $fila->codigo;
                     $fecha = $fila->fecha_emision;
-                    $destinatario = $fila->destinatario;
+                    $remitente = $fila->remitente;
                     $asunto = $fila->asunto;
                     $observaciones = $fila->observaciones;
+                    $archivo = $fila->archivo;
                 }
             }
             ?>
@@ -28,11 +29,12 @@
                     <?= isset($error) ? $error : '' ?>
                 </div>
                 <input type="hidden" name="id" value="<?= isset($id) ? $id : '' ?>" >
+                <input type="hidden" name="archivo_e" value="<?= isset($id) ? $archivo : '' ?>" >
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">N°Documento</span>
                     </div>
-                    <input type="text" class="form-control" name="codigo" value="<?= isset($id) ? $codigo : '' ?>" placeholder="  N°0000" required>
+                    <input type="text" class="form-control" name="codigo" value="<?= isset($id) ? $codigo : '' ?>" placeholder="  N°0000" disabled="">
                     <i class="form-group__bar"></i>
                 </div>
                 <div class="input-group mb-3">
@@ -56,7 +58,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Destinatario</span>
                     </div>
-                    <input type="text" class="form-control" name="destinatario" value="<?= isset($id) ? $destinatario : '' ?>" placeholder="  Persona Dirigida" required>
+                    <input type="text" class="form-control" name="remitente" value="<?= isset($id) ? $destinatario : '' ?>" placeholder="  Persona Dirigida" required>
                     <i class="form-group__bar"></i>
                 </div>
                 <div class="input-group mb-3">
@@ -80,6 +82,7 @@
                     <input type="file" class="form-control" name="archivo" >
                     <i class="form-group__bar"></i>
                 </div>
+                
                 <br>
                 <button type="submit" class="btn btn-success">Guardar</button>
             </form>

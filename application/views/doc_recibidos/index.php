@@ -9,6 +9,9 @@
         <a href="<?= base_url() ?>doc_recibido/nuevo">
             <button class="btn btn-outline-primary btn--icon-text"><i class="zmdi zmdi-plus"></i> Nuevo Registro</button>
         </a>
+        <div style="color: green">
+            <?= isset($error) ? $error : '' ?>
+        </div>
         <br><br>
         <div class="table-responsive">
             <table id="data-table" class="table table-bordered mb-0">
@@ -21,6 +24,7 @@
                         <th>Remitente</th>
                         <th>Asunto</th>
                         <th>Observaciones</th>
+                        <th>Caso</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -32,13 +36,23 @@
                             <td><?= $fila->tipo_documento ?></td>
                             <td><?= $fila->fecha_ingreso ?></td>
                             <td><?= $fila->remitente ?></td>
+                            <td><?= $fila->asunto ?></td>
+                            <td><?= $fila->observaciones ?></td>
+                            <td><?= $fila->nombre ?></td>
                             <td>
-                                <?=$fila->asunto ?>
-                            </td>
-                            <td>
-                                <?=$fila->observaciones ?>
-                            </td>
-                            <td>
+                                <?php if (is_null($fila->archivo)) { ?>
+                                    <a href="<?= base_url() ?>doc_recibido/subir_archivo/<?= $fila->iddoc_recibido ?>">
+                                        <button class="btn btn-outline-success btn--icon-text">
+                                            <i class="zmdi zmdi-download"></i> Subir Archivo
+                                        </button>
+                                    </a>
+                                <?php } else { ?>
+                                    <a href="<?= base_url() ?>doc_recibido/descargar/<?= $fila->archivo ?>">
+                                        <button class="btn btn-outline-success btn--icon-text">
+                                            <i class="zmdi zmdi-download"></i> Descargar
+                                        </button>
+                                    </a>
+                                <?php } ?>
                                 <a href="<?= base_url() ?>doc_recibido/editar/<?= $fila->iddoc_recibido ?>">
                                     <button class="btn btn-outline-info btn--icon-text">
                                         <i class="zmdi zmdi-edit"></i> Editar
@@ -51,37 +65,7 @@
                                 </a>
                             </td>
                         </tr>
-<!--                    <div class="modal fade" id="asunto_modal" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title pull-left">Default modal</h5>
-                                </div>
-                                <div class="modal-body">
-                                    PHP<?$fila->asunto ?>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="observacion_modal" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title pull-left">Default modal</h5>
-                                </div>
-                                <div class="modal-body">
-                                    PHP<?$fila->observaciones ?>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
-                <?php } ?>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

@@ -4,6 +4,10 @@ $(document).ready(function () {
     var m = date.getMonth();
     var y = date.getFullYear();
     $('.calendar').fullCalendar({
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
         header: {
             right: '',
             center: '',
@@ -104,7 +108,7 @@ $(document).ready(function () {
                 currentEvent[0].title = currentTitle;
                 currentEvent[0].description = currentDesc;
                 currentEvent[0].className = [currentClass];
-                $.post(base_url + 'actividad/actualizar_evento/'+currentId, $('.edit-event__form').serialize(), function () {
+                $.post(base_url + 'actividad/actualizar_evento/' + currentId, $('.edit-event__form').serialize(), function () {
 
                 }, 'json');
                 $('.calendar').fullCalendar('updateEvent', currentEvent[0]);
@@ -129,8 +133,8 @@ $(document).ready(function () {
                     cancelButtonClass: 'btn btn-secondary'
                 }).then(function (result) {
                     if (result.value) {
-                        
-                        $.post(base_url + 'actividad/eliminar_evento/'+currentId, $('.edit-event__form').serialize(), function () {
+
+                        $.post(base_url + 'actividad/eliminar_evento/' + currentId, $('.edit-event__form').serialize(), function () {
 
                         }, 'json');
                         $('.calendar').fullCalendar('removeEvents', currentId);

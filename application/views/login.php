@@ -1,6 +1,6 @@
 <?php
-if($this->session->userdata('nombre')){
-    header('Location: '.base_url().'home');
+if ($this->session->userdata('nombre')) {
+    header('Location: ' . base_url() . 'home');
 }
 ?>
 <!DOCTYPE html>
@@ -38,7 +38,7 @@ if($this->session->userdata('nombre')){
                 </div>
 
                 <div class="login__block__body">
-                    <p style="color:red;"><?= isset($mensaje) ? $mensaje : ''?></p>
+                    <p style="color:red;"><?= isset($mensaje) ? $mensaje : '' ?></p>
                     <form action="<?= base_url() ?>login/validar" method="POST">
                         <div class="form-group form-group--float form-group--centered">
                             <input type="text" name="usuario" class="form-control">

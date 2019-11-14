@@ -27,10 +27,10 @@ class Actividad extends CI_Controller {
     }
 
     public function mostrar_actividades() {
-        $result=$this->MActividad->obtener_registros();
-        $data=[];
+        $result = $this->MActividad->obtener_registros();
+        $data = [];
         foreach ($result as $row) {
-            $data[]=[
+            $data[] = [
                 'id' => $row->idactividad,
                 'title' => $row->actividad,
                 'start' => $row->fecha,
@@ -41,12 +41,11 @@ class Actividad extends CI_Controller {
         }
         echo json_encode($data);
     }
-    
-    public function actualizar_evento($id){
+
+    public function actualizar_evento($id) {
         $datos = $this->input->post();
-        $this->MActividad->modificar_registro($id,$datos);
+        $this->MActividad->modificar_registro($id, $datos);
         echo json_enconde();
     }
-    
 
 }

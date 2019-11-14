@@ -102,6 +102,7 @@ if (!$this->session->userdata('nombre')) {
                                 <li><a href="<?= base_url() ?>doc_recibido">Doc. Recibidos</a></li>
                             </ul>
                         </li>
+                        <li><a href="<?= base_url() ?>caso"><i class="zmdi zmdi-folder-person"></i> Casos</a></li>
                         <li><a href="<?= base_url() ?>ocurrencia"><i class="zmdi zmdi-folder-outline"></i> Ocurrencias</a></li>
                         <li><a href="<?= base_url() ?>actividad"><i class="zmdi zmdi-calendar-note"></i> Actividades</a></li>
 

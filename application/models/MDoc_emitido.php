@@ -3,7 +3,13 @@
 class MDoc_emitido extends CI_Model {
     
     public function mostrar_registros(){
-        $query = $this->db->query("SELECT * FROM doc_emitido d INNER JOIN tipo_documento t ON d.idtipo_documento=t.idtipo_documento WHERE d.estado='A' ");
+        $query = $this->db->query("SELECT * FROM doc_emitido d INNER JOIN tipo_documento t ON d.idtipo_documento=t.idtipo_documento"
+                . " LEFT JOIN caso c ON d.idcaso=c.idcaso WHERE d.estado='A' ");
+        return $query->result();
+    }
+    
+    public function obtener_registro(){
+        $query = $this->db->get_where('doc_emitido', array('estado'=>'A','idcaso'=>NULL));
         return $query->result();
     }
 
@@ -24,6 +30,10 @@ class MDoc_emitido extends CI_Model {
             'estado'=>'I'
         );
         $this->db->update('doc_emitido',$data);
+    }
+    public function mostrar_registro($id){
+        $query=$this->db->query("SELECT * FROM doc_emitido WHERE iddoc_emitido='$id' ");
+        return $query->result();
     }
 
 }

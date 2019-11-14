@@ -5,7 +5,7 @@
 
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Nuevo Documento Emitido</h4>
+        <h4 class="card-title">Editar Documento Emitido</h4>
         <div class="row">
             <?php
             $idtipo_documento = '';
@@ -19,6 +19,7 @@
                     $destinatario = $fila->destinatario;
                     $asunto = $fila->asunto;
                     $observaciones = $fila->observaciones;
+                    $archivo = $fila->archivo;
                 }
             }
             ?>
@@ -28,11 +29,12 @@
                     <?= isset($error) ? $error : '' ?>
                 </div>
                 <input type="hidden" name="id" value="<?= isset($id) ? $id : '' ?>" >
+                <input type="hidden" name="archivo_e" value="<?= isset($id) ? $archivo : '' ?>" >
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">N°Documento</span>
                     </div>
-                    <input type="text" class="form-control" name="codigo" value="<?= isset($id) ? $codigo : '' ?>" placeholder="  N°0000" required>
+                    <input type="text" class="form-control" name="codigo" value="<?= isset($id) ? $codigo : '' ?>" placeholder="  N°0000" disabled="">
                     <i class="form-group__bar"></i>
                 </div>
                 <div class="input-group mb-3">
@@ -80,6 +82,7 @@
                     <input type="file" class="form-control" name="archivo" >
                     <i class="form-group__bar"></i>
                 </div>
+                
                 <br>
                 <button type="submit" class="btn btn-success">Guardar</button>
             </form>
