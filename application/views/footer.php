@@ -49,28 +49,6 @@
         <?php if($this->uri->segment(1)=='actividad'){ ?>
         <script src="<?=base_url()?>public/js/calendario.js"></script>
         <?php } ?>
-        <script type="text/javascript">
-        $('#pregunta').click(function(){
-                swal({
-                    title: 'Are you sure?',
-                    text: 'You will not be able to recover this imaginary file!',
-                    type: 'warning',
-                    showCancelButton: true,
-                    buttonsStyling: false,
-                    confirmButtonClass: 'btn btn-danger',
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonClass: 'btn btn-secondary'
-                }).then(function(){
-                    swal({
-                        title: 'Are you sure?',
-                        text: 'You will not be able to recover this imaginary file!',
-                        type: 'success',
-                        buttonsStyling: false,
-                        confirmButtonClass: 'btn btn-primary'
-                    });
-                });
-            });
-            
-        </script>
+        <script src="<?=base_url()?>public/js/eliminar_registro.js"></script>
     </body>
 </html>

@@ -7,6 +7,7 @@ class Doc_emitido extends CI_Controller {
         parent::__construct();
         $this->load->model('MTipo_documento');
         $this->load->model('MDoc_emitido');
+        $this->load->model('MCaso');
     }
 
     public function index($mensaje = '') {
@@ -24,6 +25,7 @@ class Doc_emitido extends CI_Controller {
 
     public function nuevo() {
         $data['tipo_documentos'] = $this->MTipo_documento->mostrar_registros();
+        $data['casos'] = $this->MCaso->mostrar_registros();
         $this->load->view('header');
         $this->load->view('doc_emitidos/nuevo', $data);
         $this->load->view('footer');
@@ -72,6 +74,7 @@ class Doc_emitido extends CI_Controller {
                 'asunto' => $this->input->post('asunto'),
                 'observaciones' => $this->input->post('observaciones'),
                 'idtipo_documento' => $this->input->post('idtipo_documento'),
+                'idcaso' => $this->input->post('idcaso'),
                 'estado' => 'A'
             );
             $this->MDoc_emitido->nuevo_registro($data);
@@ -85,6 +88,7 @@ class Doc_emitido extends CI_Controller {
                 'asunto' => $this->input->post('asunto'),
                 'observaciones' => $this->input->post('observaciones'),
                 'idtipo_documento' => $this->input->post('idtipo_documento'),
+                'idcaso' => $this->input->post('idcaso'),
                 'estado' => 'A'
             );
             $this->MDoc_emitido->nuevo_registro($data);
@@ -95,6 +99,7 @@ class Doc_emitido extends CI_Controller {
     public function editar($id) {
         $data['tipo_documentos'] = $this->MTipo_documento->mostrar_registros();
         $data['registro'] = $this->MDoc_emitido->editar_registro($id);
+        $data['casos'] = $this->MCaso->mostrar_registros();
         $this->load->view('header');
         $this->load->view('doc_emitidos/editar', $data);
         $this->load->view('footer');
@@ -116,6 +121,7 @@ class Doc_emitido extends CI_Controller {
                 'asunto' => $this->input->post('asunto'),
                 'observaciones' => $this->input->post('observaciones'),
                 'idtipo_documento' => $this->input->post('idtipo_documento'),
+                'idcaso' => $this->input->post('idcaso')
             );
             $id = $this->input->post('id');
             $this->MDoc_emitido->modificar_registro($data, $id);
@@ -127,7 +133,8 @@ class Doc_emitido extends CI_Controller {
                 'archivo' => $this->upload->data('file_name'),
                 'observaciones' => $this->input->post('observaciones'),
                 'destinatario' => $this->input->post('destinatario'),
-                'idtipo_documento' => $this->input->post('idtipo_documento')
+                'idtipo_documento' => $this->input->post('idtipo_documento'),
+                'idcaso' => $this->input->post('idcaso')
             );
             $id = $this->input->post('id');
             $this->MDoc_emitido->modificar_registro($data, $id);

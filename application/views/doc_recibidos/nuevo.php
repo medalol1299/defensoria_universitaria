@@ -1,24 +1,26 @@
 <header class="content__title">
-    <h1>Documentos Emitidos</h1>
+    <h1>Documentos Recibido</h1>
 
 </header>
 
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Nuevo Documento Emitido</h4>
+        <h4 class="card-title">Nuevo Documento Recibido</h4>
         <div class="row">
             <?php
             $idtipo_documento = '';
+            $idcaso='';
             if (isset($registro)) {
                 foreach ($registro as $fila) {
                     $id = $fila->iddoc_recibido;
                     $tipo_documento = $fila->tipo_documento;
                     $idtipo_documento = $fila->idtipo_documento;
                     $codigo = $fila->codigo;
-                    $fecha = $fila->fecha_emision;
+                    $fecha = $fila->fecha_ingreso;
                     $remitente = $fila->remitente;
                     $asunto = $fila->asunto;
                     $observaciones = $fila->observaciones;
+                    $idcaso = $fila->idcaso;
                 }
             }
             ?>
@@ -40,7 +42,7 @@
                         <span class="input-group-text">Tipo de Documento</span>
                     </div>
                     <select class="form-control" name="idtipo_documento" required>
-                        <option>[Seleccione Tipo de Documento]</option>
+                        <option value="">[Seleccione Tipo de Documento]</option>
                         <?php foreach ($tipo_documentos as $row) { ?>
                             <option value="<?= $row->idtipo_documento ?>" <?= (($row->idtipo_documento)==$idtipo_documento) ? 'SELECTED' : '' ?>><?= $row->tipo_documento ?></option>
                         <?php } ?>
@@ -72,6 +74,17 @@
                     </div>
                     <input type="text" class="form-control" name="observaciones" value="<?= isset($id) ? $observaciones : '' ?>" placeholder="  Observaciones" required>
                     <i class="form-group__bar"></i>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Caso al que Pertenece</span>
+                    </div>
+                    <select class="form-control" name="idcaso">
+                        <option value="<?=NULL?>">[Seleccione el Caso al que Pertenece]</option>
+                        <?php foreach ($casos as $row) { ?>
+                            <option value="<?= $row->idcaso ?>" <?= (($row->idcaso) == $idcaso) ? 'SELECTED' : '' ?>><?= $row->caso ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">

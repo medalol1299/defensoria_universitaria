@@ -17,23 +17,23 @@
                         <th></th>
                         <th>CASO</th>
                         <th>ASUNTO</th>
-                        <th>Acciones</th>
+                        <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($registros as $key => $fila) { ?>
                         <tr>
                             <th><?= $key + 1 ?></th>
-                            <td><?= $fila->nombre ?></td>
-                            <td><?= $fila->asunto ?></td>
+                            <td><?= $fila->caso ?></td>
+                            <td><?= $fila->descripcion ?></td>
                             <td>
                                 <a href="<?= base_url() ?>caso/editar/<?= $fila->idcaso ?>">
                                     <button class="btn btn-outline-info btn--icon-text">
                                         <i class="zmdi zmdi-edit"></i> Editar
                                     </button>
                                 </a>
-                                <a href="<?= base_url() ?>caso/borrar/<?= $fila->idcaso ?>">
-                                    <button class="btn btn-outline-danger btn--icon-text" id="pregunta">
+                                <a href="#" >
+                                    <button class="btn btn-outline-danger btn--icon-text pregunta" id="<?= $fila->idcaso ?>">
                                         <i class="zmdi zmdi-delete"></i> Eliminar
                                     </button>
                                 </a>

@@ -8,6 +8,7 @@ class Doc_recibido extends CI_Controller {
         parent::__construct();
         $this->load->model('MTipo_documento');
         $this->load->model('MDoc_recibido');
+        $this->load->model('MCaso');
     }
 
     public function index($mensaje = '') {
@@ -25,6 +26,7 @@ class Doc_recibido extends CI_Controller {
 
     public function nuevo() {
         $data['tipo_documentos'] = $this->MTipo_documento->mostrar_registros();
+        $data['casos'] = $this->MCaso->mostrar_registros();
         $this->load->view('header');
         $this->load->view('doc_recibidos/nuevo', $data);
         $this->load->view('footer');
@@ -73,6 +75,7 @@ class Doc_recibido extends CI_Controller {
                 'asunto' => $this->input->post('asunto'),
                 'observaciones' => $this->input->post('observaciones'),
                 'idtipo_documento' => $this->input->post('idtipo_documento'),
+                'idcaso' => $this->input->post('idcaso'),
                 'estado' => 'A'
             );
             $this->MDoc_recibido->nuevo_registro($data);
@@ -86,6 +89,7 @@ class Doc_recibido extends CI_Controller {
                 'asunto' => $this->input->post('asunto'),
                 'observaciones' => $this->input->post('observaciones'),
                 'idtipo_documento' => $this->input->post('idtipo_documento'),
+                'idcaso' => $this->input->post('idcaso'),
                 'estado' => 'A'
             );
             $this->MDoc_recibido->nuevo_registro($data);
@@ -96,8 +100,9 @@ class Doc_recibido extends CI_Controller {
     public function editar($id) {
         $data['tipo_documentos'] = $this->MTipo_documento->mostrar_registros();
         $data['registro'] = $this->MDoc_recibido->editar_registro($id);
+        $data['casos'] = $this->MCaso->mostrar_registros();
         $this->load->view('header');
-        $this->load->view('doc_recibidos/nuevo', $data);
+        $this->load->view('doc_recibidos/editar', $data);
         $this->load->view('footer');
     }
 
@@ -109,11 +114,11 @@ class Doc_recibido extends CI_Controller {
         $this->upload->initialize($config);
         if (!$this->upload->do_upload('archivo')) {
             $data = array(
-                'codigo' => $this->input->post('codigo'),
                 'fecha_ingreso' => $this->input->post('fecha'),
                 'asunto' => $this->input->post('asunto'),
                 'observaciones' => $this->input->post('observaciones'),
                 'remitente' => $this->input->post('remitente'),
+                'idcaso' => $this->input->post('idcaso'),
                 'idtipo_documento' => $this->input->post('idtipo_documento')
             );
             $id = $this->input->post('id');
@@ -126,6 +131,7 @@ class Doc_recibido extends CI_Controller {
                 'archivo' => $this->upload->data('file_name'),
                 'observaciones' => $this->input->post('observaciones'),
                 'remitente' => $this->input->post('remitente'),
+                'idcaso' => $this->input->post('idcaso'),
                 'idtipo_documento' => $this->input->post('idtipo_documento')
             );
             $id = $this->input->post('id');

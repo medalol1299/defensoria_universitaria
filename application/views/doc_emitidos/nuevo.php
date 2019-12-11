@@ -9,6 +9,7 @@
         <div class="row">
             <?php
             $idtipo_documento = '';
+            $idcaso = '';
             if (isset($registro)) {
                 foreach ($registro as $fila) {
                     $id = $fila->iddoc_emitido;
@@ -19,6 +20,7 @@
                     $destinatario = $fila->destinatario;
                     $asunto = $fila->asunto;
                     $observaciones = $fila->observaciones;
+                    $idcaso = $fila->idcaso;
                 }
             }
             ?>
@@ -40,7 +42,7 @@
                         <span class="input-group-text">Tipo de Documento</span>
                     </div>
                     <select class="form-control" name="idtipo_documento" required>
-                        <option>[Seleccione Tipo de Documento]</option>
+                        <option value="">[Seleccione Tipo de Documento]</option>
                         <?php foreach ($tipo_documentos as $row) { ?>
                             <option value="<?= $row->idtipo_documento ?>" <?= (($row->idtipo_documento) == $idtipo_documento) ? 'SELECTED' : '' ?>><?= $row->tipo_documento ?></option>
                         <?php } ?>
@@ -72,6 +74,17 @@
                     </div>
                     <input type="text" class="form-control" name="observaciones" value="<?= isset($id) ? $observaciones : '' ?>" placeholder="  Observaciones">
                     <i class="form-group__bar"></i>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Caso al que pertenece</span>
+                    </div>
+                    <select class="form-control" name="idcaso">
+                        <option value="<?=NULL?>">[Seleccione el Caso al que Pertenece]</option>
+                        <?php foreach ($casos as $row) { ?>
+                            <option value="<?= $row->idcaso ?>" <?= (($row->idcaso) == $idcaso) ? 'SELECTED' : '' ?>><?= $row->caso ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">

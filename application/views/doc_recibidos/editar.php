@@ -9,22 +9,24 @@
         <div class="row">
             <?php
             $idtipo_documento = '';
+            $idcaso = '';
             if (isset($registro)) {
                 foreach ($registro as $fila) {
-                    $id = $fila->iddoc_emitido;
+                    $id = $fila->iddoc_recibido;
                     $tipo_documento = $fila->tipo_documento;
                     $idtipo_documento = $fila->idtipo_documento;
                     $codigo = $fila->codigo;
-                    $fecha = $fila->fecha_emision;
+                    $fecha = $fila->fecha_ingreso;
                     $remitente = $fila->remitente;
                     $asunto = $fila->asunto;
                     $observaciones = $fila->observaciones;
                     $archivo = $fila->archivo;
+                    $idcaso = $fila->idcaso;
                 }
             }
             ?>
 
-            <form enctype="multipart/form-data" method="POST" action="<?= base_url() ?>doc_emitido/<?= isset($id) ? 'modificar' : 'agregar' ?>" class="col-sm-12">
+            <form enctype="multipart/form-data" method="POST" action="<?= base_url() ?>doc_recibido/<?= isset($id) ? 'modificar' : 'agregar' ?>" class="col-sm-12">
                 <div style="color: red">
                     <?= isset($error) ? $error : '' ?>
                 </div>
@@ -58,7 +60,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Destinatario</span>
                     </div>
-                    <input type="text" class="form-control" name="remitente" value="<?= isset($id) ? $destinatario : '' ?>" placeholder="  Persona Dirigida" required>
+                    <input type="text" class="form-control" name="remitente" value="<?= isset($id) ? $remitente : '' ?>" placeholder="  Persona Dirigida" required>
                     <i class="form-group__bar"></i>
                 </div>
                 <div class="input-group mb-3">
@@ -74,6 +76,17 @@
                     </div>
                     <input type="text" class="form-control" name="observaciones" value="<?= isset($id) ? $observaciones : '' ?>" placeholder="  Observaciones">
                     <i class="form-group__bar"></i>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Caso al que Pertenece</span>
+                    </div>
+                    <select class="form-control" name="idcaso" required>
+                        <option value="<?=NULL?>">[Seleccione el Caso al que Pertenece]</option>
+                        <?php foreach ($casos as $row) { ?>
+                            <option value="<?= $row->idcaso ?>" <?= (($row->idcaso) == $idcaso) ? 'SELECTED' : '' ?>><?= $row->caso ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">

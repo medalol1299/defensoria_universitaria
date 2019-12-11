@@ -9,6 +9,7 @@
         <div class="row">
             <?php
             $idtipo_documento = '';
+            $idcaso = '';
             if (isset($registro)) {
                 foreach ($registro as $fila) {
                     $id = $fila->iddoc_emitido;
@@ -20,6 +21,7 @@
                     $asunto = $fila->asunto;
                     $observaciones = $fila->observaciones;
                     $archivo = $fila->archivo;
+                    $idcaso = $fila->idcaso;
                 }
             }
             ?>
@@ -74,6 +76,17 @@
                     </div>
                     <input type="text" class="form-control" name="observaciones" value="<?= isset($id) ? $observaciones : '' ?>" placeholder="  Observaciones">
                     <i class="form-group__bar"></i>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Caso al que Pertenece</span>
+                    </div>
+                    <select class="form-control" name="idcaso" required>
+                        <option value="<?=NULL?>">[Seleccione el Caso al que Pertenece]</option>
+                        <?php foreach ($casos as $row) { ?>
+                            <option value="<?= $row->idcaso ?>" <?= (($row->idcaso) == $idcaso) ? 'SELECTED' : '' ?>><?= $row->caso ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">

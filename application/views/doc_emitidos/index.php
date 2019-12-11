@@ -38,7 +38,7 @@
                             <td><?= $fila->destinatario ?></td>
                             <td><?= $fila->asunto ?></td>
                             <td><?= $fila->observaciones ?></td>
-                            <td><?= $fila->nombre ?></td>
+                            <td><?= $fila->caso ?></td>
                             <td>
                                 <?php if (is_null($fila->archivo)) { ?>
                                     <a href="<?= base_url() ?>doc_emitido/subir_archivo/<?= $fila->iddoc_emitido ?>">

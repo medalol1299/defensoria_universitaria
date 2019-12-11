@@ -87,9 +87,8 @@ if (!$this->session->userdata('nombre')) {
                         </div>
 
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="html-table.html">View Profile</a>
-                            <a class="dropdown-item" href="html-table.html">Settings</a>
-                            <a class="dropdown-item" href="html-table.html">Logout</a>
+                            <a class="dropdown-item" href="#">View Profile</a>
+                            <a class="dropdown-item" href="<?= base_url() ?>login/cerrar">Cerrar Seción</a>
                         </div>
                     </div>
 
